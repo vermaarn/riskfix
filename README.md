@@ -23,10 +23,10 @@ function MyComponent() {
 
 ## Available Components
 
-`PreBias`: A pre-bias component
-`QRReader`: A QR code reader component
-`PredictionTimeline`: A prediction timeline component to show model validated results. 
-`Timeline`: The timeline visualization component used in `PredictionTimeline`
+- `PreBias`: A pre-bias component
+- `QRReader`: A QR code reader component
+- `PredictionTimeline`: A prediction timeline component to show model validated results. 
+- `Timeline`: The timeline visualization component used in `PredictionTimeline`
 
 ## Contributing
 

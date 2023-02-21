@@ -1,6 +1,6 @@
-# React Component Library
+# ICU Model Validation 
 
-This is a React component library that provides reusable UI components for building web applications.
+This is a *React component library* that provides reusable UI components for building web applications.
 
 ## Installation
 

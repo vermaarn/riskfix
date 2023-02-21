@@ -24,38 +24,38 @@ function MyComponent() {
 ## Available Components
 
 #### PreBias: A pre-bias component
-`setPrebiasValue`: (value: number) => void;
+- `setPrebiasValue`: (value: number) => void;
 
 #### QRReader: A QR code reader component
 
-`bedside_info`: string;
-`bedside_devices`: string | null;
-`setBedsideDevices`: React.Dispatch<React.SetStateAction<string | null>>;
-`setBedsideInfo`: React.Dispatch<React.SetStateAction<string>>;
-`handleScan`: (data: any) => void;
-`handleError`: (err: any) => void;
+- `bedside_info`: string;
+- `bedside_devices`: string | null;
+- `setBedsideDevices`: React.Dispatch<React.SetStateAction<string | null>>;
+- `setBedsideInfo`: React.Dispatch<React.SetStateAction<string>>;
+- `handleScan`: (data: any) => void;
+- `handleError`: (err: any) => void;
 
 #### PredictionTimeline: A prediction timeline component to show model validated results.
 
-`prebiasValue`?: number;
-`bedsideDevices`: string | null;
-`bedsideInfo`: string;
-`user`: { email: string } | undefined;
-`postValidation`: (val: IValidation) => Promise<number | undefined>
-`fetchAnnotations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<IAnnotation>
-`postAnnotation`: (val: IPostAnnotation) => Promise<number | undefined>
-`fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
-`fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
+- `prebiasValue`?: number;
+- `bedsideDevices`: string | null;
+- `bedsideInfo`: string;
+- `user`: { email: string } | undefined;
+- `postValidation`: (val: IValidation) => Promise<number | undefined>
+- `fetchAnnotations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<IAnnotation>
+- `postAnnotation`: (val: IPostAnnotation) => Promise<number | undefined>
+- `fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
+- `fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
 
 #### Timeline: The timeline visualization component used within the PredictionTimeline component.
 
-`devid`: number;
-`prebias`: number;
-`modelPause`: boolean;
-`user`: string;
-`fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
-`fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
-`postValidation`: (val: IValidation) => Promise<number | undefined>
+- `devid`: number;
+- `prebias`: number;
+- `modelPause`: boolean;
+- `user`: string;
+- `fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
+- `fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
+- `postValidation`: (val: IValidation) => Promise<number | undefined>
 
 <!-- - `PreBias`: A pre-bias component
 - `QRReader`: A QR code reader component

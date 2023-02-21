@@ -9,9 +9,17 @@ function App() {
   const [prebiasValue, setPrebiasValue] = useState<number>();
 
   return (
-    <div className="App">
-      <PreBias setPrebiasValue={setCount} />
-        <PredictionTimeline
+    <div className="App" >
+      {/* <PreBias setPrebiasValue={setCount} /> */}
+      <QRReader
+        bedside_info={bedsideInfo}
+        setBedsideInfo={setBedsideInfo}
+        bedside_devices={bedsideDevices}
+        setBedsideDevices={setBedsideDevices}
+        handleScan={() => { }}
+        handleError={(err) => { }}
+      />
+      {/* <PredictionTimeline
             user={{email: "AAAA"}}
             prebiasValue={prebiasValue}
             bedsideDevices={bedsideDevices}
@@ -21,7 +29,7 @@ function App() {
             fetchPrediction={async () => {  return "a" as any }}
             fetchValidations={async () => {  return "a" as any }}
             postValidation={async () => {  return "a" as any }}
-          />
+          /> */}
     </div>
   )
 }

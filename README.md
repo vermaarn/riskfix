@@ -37,7 +37,7 @@ function MyComponent() {
 
 #### PredictionTimeline: A prediction timeline component to show model validated results.
 
-- `prebiasValue`?: number;
+- `prebiasValue`: number | undefined;
 - `bedsideDevices`: string | null;
 - `bedsideInfo`: string;
 - `user`: { email: string } | undefined;

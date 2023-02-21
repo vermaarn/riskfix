@@ -29,38 +29,53 @@ function MyComponent() {
 #### QRReader: A QR code reader component
 
 - `bedside_info`: string;
+  - A string representing the information about the bedside monitoring device.
 - `bedside_devices`: string | null;
+  - A string or null value representing the list of devices connected to the bedside monitoring system.
 - `setBedsideDevices`: React.Dispatch<React.SetStateAction<string | null>>;
+  - A React state hook function that takes a string or null value and sets the bedside devices.
 - `setBedsideInfo`: React.Dispatch<React.SetStateAction<string>>;
+  - A React state hook function that takes a string value and sets the bedside info.
 - `handleScan`: (data: any) => void;
+  - A function that takes a data object as an argument and is called when a QR code is successfully scanned.
 - `handleError`: (err: any) => void;
+  -  A function that takes an error object as an argument and is called when there is an error with the QR code scan.
 
 #### PredictionTimeline: A prediction timeline component to show model validated results.
-
 - `prebiasValue`: number | undefined;
+	- An optional number value representing the pre-bias value for the risk prediction model.
 - `bedsideDevices`: string | null;
+	- A string or null value representing the list of devices connected to the bedside monitoring system.
 - `bedsideInfo`: string;
+	- A string value representing the information about the bedside monitoring device.
 - `user`: { email: string } | undefined;
+	- An optional object with an email property representing the user information.
 - `postValidation`: (val: IValidation) => Promise<number | undefined>
+	- A function that takes a validation object as an argument and returns a promise that resolves to a number or undefined value.
 - `fetchAnnotations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<IAnnotation>
+	- A function that takes user, devid, start_time, and end_time as arguments and returns a promise that resolves to an annotation object.
 - `postAnnotation`: (val: IPostAnnotation) => Promise<number | undefined>
+	- A function that takes an annotation object as an argument and returns a promise that resolves to a number or undefined value.
 - `fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
+	- A function that takes devid, limit, start_time, and end_time as arguments and returns a promise that resolves to a prediction scores object.
 - `fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
+	- A function that takes user, devid, start_time, and end_time as arguments and returns a promise that resolves to a validated scores object.
 
 #### Timeline: The timeline visualization component used within the PredictionTimeline component.
-
 - `devid`: number;
+	- A number value representing the ID of the monitoring device.
 - `prebias`: number;
+	- A number value representing the pre-bias value for the risk prediction model.
 - `modelPause`: boolean;
+	- A boolean value indicating whether the model is paused or not.
 - `user`: string;
+	- A string value representing the user information.
 - `fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
+	- A function that takes devid, limit, start_time, and end_time as arguments and returns a promise that resolves to a prediction scores object.
 - `fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
+	- A function that takes user, devid, start_time, and end_time as arguments and returns a promise that resolves to a validated scores object.
 - `postValidation`: (val: IValidation) => Promise<number | undefined>
-
-<!-- - `PreBias`: A pre-bias component
-- `QRReader`: A QR code reader component
-- `PredictionTimeline`: A prediction timeline component to show model validated results. 
-- `Timeline`: The timeline visualization component used in `PredictionTimeline` -->
+	- A function that takes a validation object as an argument and returns a promise that resolves to a number or undefined value.
 
 ## Contributing
 

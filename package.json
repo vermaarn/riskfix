@@ -1,11 +1,21 @@
 {
-  "name": "icu-model-validation-lib",
+  "name": "icu-validation-ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "main": "./dist/icu-validation-ui.umd.js",
+  "module": "./dist/icu-validation-ui.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/icu-validation-ui.es.js",
+      "require": "./dist/icu-validation-ui.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build-style": "npx tailwindcss -i ./src/index.css -o ./src/output.css",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -13,7 +23,8 @@
     "luxon": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-qr-reader": "^2.2.1"
+    "react-qr-reader": "^2.2.1",
+    "vite-plugin-css-injected-by-js": "^3.0.1"
   },
   "devDependencies": {
     "@types/d3": "^7.4.0",

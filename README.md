@@ -1,6 +1,6 @@
-# ICU Model Validation 
+# RiskFix:  A Modular Package for Visual-Interactive Validation of Risk-Prediction Machine Learning Models
 
-This is a *React component library* that provides reusable UI components for building web applications.
+This is a *React component library* that provides reusable UI components for building web applications. 
 
 ## Installation
 

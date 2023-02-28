@@ -151,6 +151,9 @@ const PredictionTimeline: React.FC<IPredicitionTimelineProps> = ({
                 fetchPrediction={fetchPrediction}
                 fetchValidations={fetchValidations}
                 postValidation={postValidation}
+                fetchInterval={30 * 1000} // i.e  30000
+                timeWindow={10 * 30 * 1000} // 10 * 30000
+                rollbackTime={0}
               />
             )}
           </div>

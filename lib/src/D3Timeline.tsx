@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { PredictionScores, ValidatedScores, IValidation } from "./types";
 import * as d3 from "d3"
 
-const UPDATE_TIME = 5000;
-const ROLLBACK_TIME = 24 * 60 * 60 * 1000;
-
 interface IData {
   date: number;
   value: number;
@@ -22,17 +19,21 @@ interface ID3TimelineProps {
   prebias: number;
   modelPause: boolean;
   user: string;
+  fetchInterval: number; // i.e  30000
+  timeWindow: number; // 10 * 30000
+  rollbackTime: number;
   fetchPrediction: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
   fetchValidations: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
   postValidation: (val: IValidation) => Promise<number | undefined>
 }
 
 export default function D3Timeline(props: ID3TimelineProps) {
-  const { fetchPrediction, fetchValidations, postValidation } = props
+  const { fetchPrediction, fetchValidations, postValidation, rollbackTime, timeWindow, fetchInterval } = props
   const visRef = useRef<HTMLDivElement>(null);
   const [pause, setPause] = useState(false);
   const [validationData, setValidationData, validationRef] = useStateAndRef<IData[]>([]);
   const [predictionData, setPredictionData, predictionRef] = useStateAndRef<IData[]>([]);
+  const NUM_WINDOW_POINTS = Math.floor(timeWindow / fetchInterval) 
 
   useEffect(() => {
     if (props.modelPause) {
@@ -45,29 +46,29 @@ export default function D3Timeline(props: ID3TimelineProps) {
   useEffect(() => {
 
     const fetchInitalPredictions = async () => {
-      const currTime = Math.floor(new Date().getTime() / 30000) * 30000; // get 30 sec interval
-      const startTime = currTime - 30000 * 10; // get last 10 points
+      const currTime = Math.floor(new Date().getTime() / fetchInterval) * fetchInterval; // get 30 sec interval
+      const startTime = currTime - fetchInterval * NUM_WINDOW_POINTS; // get last 10 points
 
       const predictionRes = await fetchPrediction(
         props.devid,
         10,
-        startTime - ROLLBACK_TIME,
-        currTime - ROLLBACK_TIME
+        startTime -  rollbackTime,
+        currTime - rollbackTime 
       );
 
       const validationRes = await fetchValidations(
         props.user,
         props.devid,
-        startTime - ROLLBACK_TIME,
-        currTime - ROLLBACK_TIME
+        startTime -  rollbackTime,
+        currTime - rollbackTime 
       );
       console.log("RES", predictionRes, validationRes)
 
       let validationArr: any[] = [];
 
       // Get last 10 points which fall in a 30 second interval
-      const predictedLastTen = Array.from({ length: 10 }).map((_, i) => {
-        const intervaledTime: number = currTime - (i * 30000) - ROLLBACK_TIME; // go back 30 seconds
+      const predictedLastTen = Array.from({ length: NUM_WINDOW_POINTS }).map((_, i) => {
+        const intervaledTime: number = currTime - (i * fetchInterval) -  rollbackTime; // go back 30 seconds
         const predictedTimeIdx = predictionRes.times.findIndex(
           (t) => String(t) === String(intervaledTime)
         );
@@ -133,7 +134,7 @@ export default function D3Timeline(props: ID3TimelineProps) {
       // console.log("REFETCHING", validationData)
       // console.log("FETCHING", predictionData);
       await fetchInitalPredictions();
-    }, 30 * 1000);
+    }, fetchInterval);
   }, []);
 
   useEffect(() => {

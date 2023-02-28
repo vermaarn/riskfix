@@ -62,7 +62,9 @@ export const fetchPredictioRes: PredictionScores = {
         0.5,
         0.5,
         0.5,
-        0.5
+        0.5,
+        1,
+        1
     ],
     "times": [
         ((Math.floor(new Date().getTime() / (INTERVAL) ) * INTERVAL)  ).toString(),
@@ -75,6 +77,8 @@ export const fetchPredictioRes: PredictionScores = {
         ((Math.floor(new Date().getTime() / (INTERVAL) ) * INTERVAL) - (INTERVAL * 7) ).toString(),
         ((Math.floor(new Date().getTime() / (INTERVAL) ) * INTERVAL) - (INTERVAL * 8) ).toString(),
         ((Math.floor(new Date().getTime() / (INTERVAL) ) * INTERVAL) - (INTERVAL * 9) ).toString(),
+        ((Math.floor(new Date().getTime() / (INTERVAL) ) * INTERVAL) - (INTERVAL * 10) ).toString(),
+        ((Math.floor(new Date().getTime() / (INTERVAL) ) * INTERVAL) - (INTERVAL * 11) ).toString(),
        
     ]
 }

@@ -70,12 +70,19 @@ function MyComponent() {
 	- A boolean value indicating whether the model is paused or not.
 - `user`: string;
 	- A string value representing the user information.
+- `fetchInterval`
+	- The time of the interval between points, in milliseconds. An example value would be: 30000 for 30 second intervals.
+- `timeWindow`
+	- The size of display window in terms of time, in milliseconds. For example, if we wanted to show the last 5 mins. we would put in: (5 * 60 * 1000).
+- `rollbackTime`
+	- If a time rollback is required from the latest set of points, use this to start after a certain number of milliseconds before the current time within the model values.
 - `fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
 	- A function that takes devid, limit, start_time, and end_time as arguments and returns a promise that resolves to a prediction scores object.
 - `fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
 	- A function that takes user, devid, start_time, and end_time as arguments and returns a promise that resolves to a validated scores object.
 - `postValidation`: (val: IValidation) => Promise<number | undefined>
 	- A function that takes a validation object as an argument and returns a promise that resolves to a number or undefined value.
+
 
 ## Contributing
 

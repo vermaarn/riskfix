@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { IValidation, IPostAnnotation, IAnnotation, ValidatedScores, PredictionScores } from "./types";
+import { IValidation, IRecordAnnotation, IAnnotation, ValidatedScores, PredictionScores } from "./types";
 import D3Timeline from "./D3Timeline";
 import { DateTime } from "luxon"
 
@@ -8,22 +8,22 @@ export interface IPredicitionTimelineProps {
   bedsideDevices: string | null;
   bedsideInfo: string;
   user: { email: string } | undefined;
-  postValidation: (val: IValidation) => Promise<number | undefined>
-  fetchAnnotations: (user: string, devid: number, start_time: number, end_time: number) => Promise<IAnnotation>
-  postAnnotation: (val: IPostAnnotation) => Promise<number | undefined>
+  recordValidation: (val: IValidation) => Promise<number | undefined>
+  fetchAnnotation: (user: string, devid: number, start_time: number, end_time: number) => Promise<IAnnotation>
+  recordAnnotation: (val: IRecordAnnotation) => Promise<number | undefined>
   fetchPrediction: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
-  fetchValidations: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
+  fetchValidation: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
 }
 
 const PredictionTimeline: React.FC<IPredicitionTimelineProps> = ({
   prebiasValue,
   bedsideDevices,
   user,
-  fetchAnnotations,
-  postAnnotation,
+  fetchAnnotation,
+  recordAnnotation,
   fetchPrediction,
-  fetchValidations,
-  postValidation,
+  fetchValidation,
+  recordValidation,
 }) => {
   const [comment, setComment] = useState("");
   const [writtenComments, setWrittenComments] = useState<
@@ -51,7 +51,7 @@ const PredictionTimeline: React.FC<IPredicitionTimelineProps> = ({
     const endTime = new Date().getTime();
     const hours = 100;
     const startTime = endTime - hours * 60 * 60 * 1000;
-    fetchAnnotations(user.email, devid, startTime, endTime)
+    fetchAnnotation(user.email, devid, startTime, endTime)
       .then((res) => {
         setWrittenComments(
           res.annotation.map((c, i) => ({
@@ -87,7 +87,7 @@ const PredictionTimeline: React.FC<IPredicitionTimelineProps> = ({
     setWrittenComments((c) => [newComment, ...c]);
     setComment("");
     if (user?.email && prebiasValue !== undefined) {
-      postAnnotation({
+      recordAnnotation({
         timestamp: commentTime,
         devid,
         user: user.email,
@@ -149,8 +149,8 @@ const PredictionTimeline: React.FC<IPredicitionTimelineProps> = ({
                 prebias={prebiasValue}
                 modelPause={modelPause}
                 fetchPrediction={fetchPrediction}
-                fetchValidations={fetchValidations}
-                postValidation={postValidation}
+                fetchValidation={fetchValidation}
+                recordValidation={recordValidation}
                 fetchInterval={30 * 1000} // i.e  30000
                 timeWindow={10 * 30 * 1000} // 10 * 30000
                 rollbackTime={0}

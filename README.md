@@ -50,15 +50,15 @@ function MyComponent() {
 	- A string value representing the information about the bedside monitoring device.
 - `user`: { email: string } | undefined;
 	- An optional object with an email property representing the user information.
-- `postValidation`: (val: IValidation) => Promise<number | undefined>
+- `recordValidation`: (val: IValidation) => Promise<number | undefined>
 	- A function that takes a validation object as an argument and returns a promise that resolves to a number or undefined value.
-- `fetchAnnotations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<IAnnotation>
+- `fetchAnnotation`: (user: string, devid: number, start_time: number, end_time: number) => Promise<IAnnotation>
 	- A function that takes user, devid, start_time, and end_time as arguments and returns a promise that resolves to an annotation object.
-- `postAnnotation`: (val: IPostAnnotation) => Promise<number | undefined>
+- `recordAnnotation`: (val: IRecordAnnotation) => Promise<number | undefined>
 	- A function that takes an annotation object as an argument and returns a promise that resolves to a number or undefined value.
 - `fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
 	- A function that takes devid, limit, start_time, and end_time as arguments and returns a promise that resolves to a prediction scores object.
-- `fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
+- `fetchValidation`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
 	- A function that takes user, devid, start_time, and end_time as arguments and returns a promise that resolves to a validated scores object.
 
 #### Timeline: The timeline visualization component used within the PredictionTimeline component.
@@ -78,9 +78,9 @@ function MyComponent() {
 	- If a time rollback is required from the latest set of points, use this to start after a certain number of milliseconds before the current time within the model values.
 - `fetchPrediction`: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
 	- A function that takes devid, limit, start_time, and end_time as arguments and returns a promise that resolves to a prediction scores object.
-- `fetchValidations`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
+- `fetchValidation`: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
 	- A function that takes user, devid, start_time, and end_time as arguments and returns a promise that resolves to a validated scores object.
-- `postValidation`: (val: IValidation) => Promise<number | undefined>
+- `recordValidation`: (val: IValidation) => Promise<number | undefined>
 	- A function that takes a validation object as an argument and returns a promise that resolves to a number or undefined value.
 
 

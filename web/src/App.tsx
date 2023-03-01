@@ -6,7 +6,7 @@ import {
   fetchPredictioRes,
   fetchValidationRes,
 } from "./responseObjects";
-import { IPostAnnotation, IValidation } from "icu-validation-ui/dist/types";
+import { IRecordAnnotation, IValidation } from "icu-validation-ui/dist/types";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,7 +18,7 @@ function App() {
   const devid = 10
  
 
-  const postAnnotation = async (val: IPostAnnotation) => {
+  const postAnnotation = async (val: IRecordAnnotation) => {
     return 1;
   };
   const fetchAnnotations = async (
@@ -37,7 +37,7 @@ function App() {
   ) => {
     return fetchPredictioRes;
   };
-  const fetchValidations = async (
+  const fetchValidation = async (
     user: string,
     devid: number,
     start_time: number,
@@ -45,7 +45,7 @@ function App() {
   ) => {
     return fetchValidationRes;
   };
-  const postValidation = async (val: IValidation) => {
+  const recordValidation = async (val: IValidation) => {
     return 1;
   };
 
@@ -68,8 +68,8 @@ function App() {
         postAnnotation={postAnnotation}
         fetchAnnotations={fetchAnnotations}
         fetchPrediction={fetchPrediction}
-        fetchValidations={fetchValidations}
-        postValidation={postValidation}
+        fetchValidation={fetchValidation}
+        recordValidation={recordValidation}
       /> */}
       <Timeline
                 user={user.email}
@@ -77,8 +77,8 @@ function App() {
                 prebias={prebiasValue}
                 modelPause={modelPause}
                 fetchPrediction={fetchPrediction}
-                fetchValidations={fetchValidations}
-                postValidation={postValidation}
+                fetchValidation={fetchValidation}
+                recordValidation={recordValidation}
                 fetchInterval={30 * 1000} // i.e  30000
                 timeWindow={12 * 30 * 1000} // 10 * 30000
                 rollbackTime={0}

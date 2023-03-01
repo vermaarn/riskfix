@@ -10,7 +10,7 @@ export interface IAnnotation {
   timestamp: number[];
 }
 
-export interface IPostAnnotation {
+export interface IRecordAnnotation {
   user: string;
   devid: number;
   timestamp: number;

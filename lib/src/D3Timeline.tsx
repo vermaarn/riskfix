@@ -23,12 +23,12 @@ interface ID3TimelineProps {
   timeWindow: number; // 10 * 30000
   rollbackTime: number;
   fetchPrediction: (devid: number, limit: number, start_time: number, end_time: number) => Promise<PredictionScores>
-  fetchValidations: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
-  postValidation: (val: IValidation) => Promise<number | undefined>
+  fetchValidation: (user: string, devid: number, start_time: number, end_time: number) => Promise<ValidatedScores>
+  recordValidation: (val: IValidation) => Promise<number | undefined>
 }
 
 export default function D3Timeline(props: ID3TimelineProps) {
-  const { fetchPrediction, fetchValidations, postValidation, rollbackTime, timeWindow, fetchInterval } = props
+  const { fetchPrediction, fetchValidation, recordValidation, rollbackTime, timeWindow, fetchInterval } = props
   const visRef = useRef<HTMLDivElement>(null);
   const [pause, setPause] = useState(false);
   const [validationData, setValidationData, validationRef] = useStateAndRef<IData[]>([]);
@@ -56,7 +56,7 @@ export default function D3Timeline(props: ID3TimelineProps) {
         currTime - rollbackTime 
       );
 
-      const validationRes = await fetchValidations(
+      const validationRes = await fetchValidation(
         props.user,
         props.devid,
         startTime -  rollbackTime,
@@ -127,7 +127,7 @@ export default function D3Timeline(props: ID3TimelineProps) {
           original_risk_score: predictionRef.current.at(0)!.value,
           validated_risk_score: validationRef.current.at(0)!.value,
         };
-        await postValidation(validationPostBody);
+        await recordValidation(validationPostBody);
         console.log(validationPostBody)
       }
 

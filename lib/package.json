@@ -1,11 +1,12 @@
 {
   "name": "riskfix",
   "private": false,
-  "version": "0.2.1",
+  "version": "0.2.3",
   "type": "module",
   "main": "./dist/riskfix.umd.js",
   "module": "./dist/riskfix.es.js",
   "types": "./dist/index.d.ts",
+  "licence": "MIT",
   "exports": {
     ".": {
       "import": "./dist/riskfix.es.js",

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
-import { PreBias, QRReader, Timeline, PredictionTimeline } from "icu-validation-ui";
+import { PreBias, QRReader, Timeline, PredictionTimeline } from "riskfix";
+
 import {
   fetchAnnotationRes,
   fetchPredictioRes,
   fetchValidationRes,
 } from "./responseObjects";
-import { IRecordAnnotation, IValidation } from "icu-validation-ui/dist/types";
+import { IRecordAnnotation, IValidation } from "riskfix/dist/types";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,10 +19,10 @@ function App() {
   const devid = 10
  
 
-  const postAnnotation = async (val: IRecordAnnotation) => {
+  const recordAnnotation = async (val: IRecordAnnotation) => {
     return 1;
   };
-  const fetchAnnotations = async (
+  const fetchAnnotation = async (
     user: string,
     devid: number,
     start_time: number,
@@ -60,18 +61,21 @@ function App() {
         handleScan={() => { }}
         handleError={(err) => { }}
       /> */}
-      {/* <PredictionTimeline
+      <PredictionTimeline
         user={user}
         prebiasValue={prebiasValue}
         bedsideDevices={bedsideDevices}
         bedsideInfo={bedsideInfo}
-        postAnnotation={postAnnotation}
-        fetchAnnotations={fetchAnnotations}
+        fetchInterval={30 * 1000} // i.e  30000
+        timeWindow={12 * 30 * 1000} // 10 * 30000
+        rollbackTime={0}
+        recordAnnotation={recordAnnotation}
+        fetchAnnotation={fetchAnnotation}
         fetchPrediction={fetchPrediction}
         fetchValidation={fetchValidation}
         recordValidation={recordValidation}
-      /> */}
-      <Timeline
+      />
+      {/* <Timeline
                 user={user.email}
                 devid={devid}
                 prebias={prebiasValue}
@@ -82,7 +86,7 @@ function App() {
                 fetchInterval={30 * 1000} // i.e  30000
                 timeWindow={12 * 30 * 1000} // 10 * 30000
                 rollbackTime={0}
-              />
+              /> */}
     </div>
   );
 }

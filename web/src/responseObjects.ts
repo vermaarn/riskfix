@@ -1,4 +1,4 @@
-import { IAnnotation, PredictionScores, ValidatedScores } from "icu-validation-ui/dist/types"
+import { IAnnotation, PredictionScores, ValidatedScores } from "riskfix/dist/types"
 
 const INTERVAL = 30 * 1000
 

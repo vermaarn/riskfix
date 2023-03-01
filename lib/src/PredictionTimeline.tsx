@@ -8,6 +8,9 @@ export interface IPredicitionTimelineProps {
   bedsideDevices: string | null;
   bedsideInfo: string;
   user: { email: string } | undefined;
+  fetchInterval: number; // i.e  30000
+  timeWindow: number; // 10 * 30000
+  rollbackTime: number;
   recordValidation: (val: IValidation) => Promise<number | undefined>
   fetchAnnotation: (user: string, devid: number, start_time: number, end_time: number) => Promise<IAnnotation>
   recordAnnotation: (val: IRecordAnnotation) => Promise<number | undefined>
@@ -19,6 +22,9 @@ const PredictionTimeline: React.FC<IPredicitionTimelineProps> = ({
   prebiasValue,
   bedsideDevices,
   user,
+  fetchInterval,
+  timeWindow,
+  rollbackTime,
   fetchAnnotation,
   recordAnnotation,
   fetchPrediction,
@@ -151,9 +157,9 @@ const PredictionTimeline: React.FC<IPredicitionTimelineProps> = ({
                 fetchPrediction={fetchPrediction}
                 fetchValidation={fetchValidation}
                 recordValidation={recordValidation}
-                fetchInterval={30 * 1000} // i.e  30000
-                timeWindow={10 * 30 * 1000} // 10 * 30000
-                rollbackTime={0}
+                fetchInterval={fetchInterval} // i.e  30000
+                timeWindow={timeWindow} // 10 * 30000
+                rollbackTime={rollbackTime}
               />
             )}
           </div>

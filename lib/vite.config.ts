@@ -17,9 +17,9 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "ICUValidationUI",
+      name: "RiskFix",
       formats: ["es", "umd"],
-      fileName: (format) => `icu-validation-ui.${format}.js`,
+      fileName: (format) => `riskfix.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom",],
